@@ -338,4 +338,4 @@ This app has an action button titled "Enter password". Once we click on the butt
 
 3. You lose the currently selected value. It ensures that we don’t create a reactive dependency that would cause this code to re-run every time `input$dynamic` changes (which will happen whenever the user modifies the value). We only want it to change when `input$type` or `input$label` changes.
 
-4. Solution at [MSS 2021](https://mastering-shiny-solutions.org/dynamic-ui.html#exercise-10.3.4.3)
+4. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/dynamic-ui.html#exercise-10.3.4.3)

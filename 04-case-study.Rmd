@@ -26,7 +26,7 @@ injuries %>%
   summarise(n = as.integer(sum(weight)))
 ```
 
-IF you flip `fct_infreq()` and `fct_lump()`, than you order the output by the sum of the weight of each diagnosis.
+If you flip `fct_infreq()` and `fct_lump()`, than you order the output by the sum of the weight of each diagnosis.
 
 
 3.

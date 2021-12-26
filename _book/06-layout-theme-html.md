@@ -54,10 +54,9 @@ shinyApp(ui, server)
 
 
 
-3.
+3.  Reference: https://shiny.rstudio.com/articles/layout-guide.html
 
 ```r
-# Reference: https://shiny.rstudio.com/articles/layout-guide.html
 # UI ONLY
 library(shiny)
 library(ggplot2)

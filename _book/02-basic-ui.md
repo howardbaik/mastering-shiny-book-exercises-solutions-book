@@ -35,10 +35,7 @@ shinyApp(ui, server)
 ```
 
 
-4. The documentation states, "It's also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the  <optgroup> HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature."
-
-
-
+4. The documentation states, "It's also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the  `<optgroup>` HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature."
 
 
 ## 2.3.5 Exercises {-}
@@ -79,7 +76,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  
     output$table <- renderDataTable(mtcars, 
                                     options = list(pageLength = 5,
                                                    ordering = FALSE, 
@@ -101,14 +97,11 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  
   output$table <- renderReactable({
     reactable(mtcars)
   })
-  
 }
 
 shinyApp(ui, server)
 
 ```
-

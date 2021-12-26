@@ -41,7 +41,10 @@ server3 <- function(input, output, server) {
 - Missing `renderText()`
 - Fixed code: `output$greeting <- renderText(paste0("Hello ", input$name))`
 
+<br>
 
 2. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/basic-reactivity.html#solution-15)
+
+<br>
 
 3. Code will fail because of df[[input$var]]. When you use `range()` or `var()`, other readers won't know if you are using a reactive or the built-in R function. 

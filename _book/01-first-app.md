@@ -18,7 +18,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-    
     output$greeting <- renderText({
         paste0("Hello ", input$name)
     })
@@ -40,13 +39,11 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  
     output$product <- renderText({ 
       # Fixed error
        input$x * 5
       # by adding input$ 
     })
-    
 }
 
 shinyApp(ui, server)
@@ -66,7 +63,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  
     output$product <- renderText({ 
        input$x * input$y
     })
@@ -95,7 +91,6 @@ server <- function(input, output, session) {
     product <- reactive({
         input$x * input$y
     })
-    
     output$product <- renderText({ 
         product()
     })
@@ -110,7 +105,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-- What's new is the additional calculations where 5 and 10 were added to the product and the outputs rendered as text.
+- What's new is the additional calculation where 5 and 10 were added to the product and the outputs rendered as text.
 
 
 5.
@@ -129,16 +124,13 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  
     dataset <- reactive({
         get(input$dataset, "package:ggplot2")
     })
-    
     # Fixed spelling
     output$summary <- renderPrint({
         summary(dataset())
     })
-    
     output$plot <- renderPlot({
       # dataset -> dataset() because its a reactive
         plot(dataset())

@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 1 Your first Shiny app | Mastering Shiny Solutions</title>
 <meta name="author" content="Howard Baek">
-<meta name="description" content="1.8 Exercises  library(shiny) ui &lt;- fluidPage(   textInput(&quot;name&quot;, &quot;What's your name?&quot;),   textOutput(&quot;greeting&quot;) ) server &lt;- function(input, output, session) {     output$greeting &lt;- renderText({...">
+<meta name="description" content="1.8 Exercises  library(shiny) ui &lt;- fluidPage(   textInput(&quot;name&quot;, &quot;What's your name?&quot;),   textOutput(&quot;greeting&quot;) ) server &lt;- function(input, output, session) {   output$greeting &lt;- renderText({  ...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 1 Your first Shiny app | Mastering Shiny Solutions">
 <meta property="og:type" content="book">
-<meta property="og:description" content="1.8 Exercises  library(shiny) ui &lt;- fluidPage(   textInput(&quot;name&quot;, &quot;What's your name?&quot;),   textOutput(&quot;greeting&quot;) ) server &lt;- function(input, output, session) {     output$greeting &lt;- renderText({...">
+<meta property="og:description" content="1.8 Exercises  library(shiny) ui &lt;- fluidPage(   textInput(&quot;name&quot;, &quot;What's your name?&quot;),   textOutput(&quot;greeting&quot;) ) server &lt;- function(input, output, session) {   output$greeting &lt;- renderText({  ...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1 Your first Shiny app | Mastering Shiny Solutions">
-<meta name="twitter:description" content="1.8 Exercises  library(shiny) ui &lt;- fluidPage(   textInput(&quot;name&quot;, &quot;What's your name?&quot;),   textOutput(&quot;greeting&quot;) ) server &lt;- function(input, output, session) {     output$greeting &lt;- renderText({...">
+<meta name="twitter:description" content="1.8 Exercises  library(shiny) ui &lt;- fluidPage(   textInput(&quot;name&quot;, &quot;What's your name?&quot;),   textOutput(&quot;greeting&quot;) ) server &lt;- function(input, output, session) {   output$greeting &lt;- renderText({  ...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -93,7 +93,6 @@
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-    
     <span class="va">output</span><span class="op">$</span><span class="va">greeting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="op">{</span>
         <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Hello "</span>, <span class="va">input</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
     <span class="op">}</span><span class="op">)</span>
@@ -113,13 +112,11 @@
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  
     <span class="va">output</span><span class="op">$</span><span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="op">{</span> 
       <span class="co"># Fixed error</span>
        <span class="va">input</span><span class="op">$</span><span class="va">x</span> <span class="op">*</span> <span class="fl">5</span>
       <span class="co"># by adding input$ </span>
     <span class="op">}</span><span class="op">)</span>
-    
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
@@ -137,7 +134,6 @@
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  
     <span class="va">output</span><span class="op">$</span><span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="op">{</span> 
        <span class="va">input</span><span class="op">$</span><span class="va">x</span> <span class="op">*</span> <span class="va">input</span><span class="op">$</span><span class="va">y</span>
     <span class="op">}</span><span class="op">)</span>
@@ -164,7 +160,6 @@
     <span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html">reactive</a></span><span class="op">(</span><span class="op">{</span>
         <span class="va">input</span><span class="op">$</span><span class="va">x</span> <span class="op">*</span> <span class="va">input</span><span class="op">$</span><span class="va">y</span>
     <span class="op">}</span><span class="op">)</span>
-    
     <span class="va">output</span><span class="op">$</span><span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="op">{</span> 
         <span class="fu">product</span><span class="op">(</span><span class="op">)</span>
     <span class="op">}</span><span class="op">)</span>
@@ -178,7 +173,7 @@
 
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <ul>
-<li>What’s new is the additional calculations where 5 and 10 were added to the product and the outputs rendered as text.</li>
+<li>What’s new is the additional calculation where 5 and 10 were added to the product and the outputs rendered as text.</li>
 </ul>
 <ol start="5" style="list-style-type: decimal">
 <li>
@@ -197,16 +192,13 @@
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  
     <span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html">reactive</a></span><span class="op">(</span><span class="op">{</span>
         <span class="fu"><a href="https://rdrr.io/r/base/get.html">get</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">dataset</span>, <span class="st">"package:ggplot2"</span><span class="op">)</span>
     <span class="op">}</span><span class="op">)</span>
-    
     <span class="co"># Fixed spelling</span>
     <span class="va">output</span><span class="op">$</span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span><span class="op">(</span><span class="op">{</span>
         <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">dataset</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
     <span class="op">}</span><span class="op">)</span>
-    
     <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
       <span class="co"># dataset -&gt; dataset() because its a reactive</span>
         <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">dataset</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
@@ -242,7 +234,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-25.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
