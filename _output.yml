@@ -2,7 +2,9 @@ bookdown::bs4_book:
   css: bs4_style.css
   theme:
     primary: "#4D6F8D"
-  repo: https://github.com/rstudio/bookdown-demo
+  repo: 
+    base: https://github.com/howardbaek/mastering-shiny-book-exercises-solutions-book
+    branch: main
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

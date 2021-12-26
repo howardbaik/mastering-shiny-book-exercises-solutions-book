@@ -1,0 +1,3 @@
+# Tidy evaluation
+
+There are no exercises in this chapter.

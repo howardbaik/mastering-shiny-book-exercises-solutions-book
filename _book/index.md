@@ -1,55 +1,24 @@
 --- 
 title: "Mastering Shiny Solutions"
 author: "Howard Baek"
-date: "2021-12-23"
+date: "2021-12-25"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
+bibliography:
+- book.bib
+- packages.bib
 description: |
-  This is the solutions manual to the exercises in Hadley Wickham's Mastering Shiny.
+  Solutions manual to the exercises in Hadley Wickham's Mastering Shiny.
 biblio-style: apalike
 csl: chicago-fullnote-bibliography.csl
 ---
 
-# About
+# Welcome {-}
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
+This is the WIP website for Mastering Shiny Solutions, a solution manual to the exercises in [Mastering Shiny](https://mastering-shiny.org/), written by Hadley Wickham. 
 
-## Usage 
+The solutions are entirely worked out by [Howard Baek](http://insidethetv.rbind.io/). 
 
-Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
+## About the Author {-}
 
-Use second-level and higher headings within chapters like: `## A short section` or `### An even shorter section`.
-
-The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
-
-## Render book
-
-You can render the HTML version of this example book without changing anything:
-
-1. Find the **Build** pane in the RStudio IDE, and
-
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
-
-Or build the book from the R console:
-
-
-```r
-bookdown::render_book()
-```
-
-To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
-## Preview book
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
-
-
-```r
-bookdown::serve_book()
-```
-
-
-
+_Howard Baek_ is a Master’s student in Biostatistics at the University of Washington. He has a Bachelor’s degree in Statistics with a Mathematics minor at the same school. His past experiences include a [Machine Learning Internship](https://github.com/orgs/UW-Upwelling-Project/teams/seattle) at Northwest Fisheries Science Center (NWFSC), where he created an algorithm to detect an oceanographic process, [NIH-funded Research Assistantship](https://github.com/howardbaek/addiction-dashboard-simple) at the Behavioral Research In Technology and Engineering (BRiTE) Center, where he developed a Shiny Dashboard that allows patients and clinicians in addiction treatment to monitor patients’ progress and goals over time, and an [Educational Data Mining Research Internship](https://github.com/howardbaek/mooc-project-github) at George Mason University, where he analyzed real world datasets from a Stanford online course and created a Shiny Dashboard for instructors to interact with the dataset.

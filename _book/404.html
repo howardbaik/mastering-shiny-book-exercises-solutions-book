@@ -39,18 +39,38 @@
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html"><span class="header-section-number">1</span> About</a></li>
-<li><a class="" href="hello-bookdown.html"><span class="header-section-number">2</span> Hello bookdown</a></li>
-<li><a class="" href="cross.html"><span class="header-section-number">3</span> Cross-references</a></li>
-<li><a class="" href="parts.html"><span class="header-section-number">4</span> Parts</a></li>
-<li><a class="" href="footnotes-and-citations.html"><span class="header-section-number">5</span> Footnotes and citations</a></li>
-<li><a class="" href="blocks.html"><span class="header-section-number">6</span> Blocks</a></li>
-<li><a class="" href="sharing-your-book.html"><span class="header-section-number">7</span> Sharing your book</a></li>
-<li><a class="" href="references.html">References</a></li>
+<li><a class="" href="index.html">Welcome</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="your-first-shiny-app.html"><span class="header-section-number">1</span> Your first Shiny app</a></li>
+<li><a class="" href="basic-ui.html"><span class="header-section-number">2</span> Basic UI</a></li>
+<li><a class="" href="basic-reactivity.html"><span class="header-section-number">3</span> Basic reactivity</a></li>
+<li><a class="" href="case-study-er-injuries.html"><span class="header-section-number">4</span> Case study: ER injuries</a></li>
+<li class="book-part">Shiny in action</li>
+<li><a class="" href="workflow.html"><span class="header-section-number">5</span> Workflow</a></li>
+<li><a class="" href="layout-themes-html.html"><span class="header-section-number">6</span> Layout, themes, HTML</a></li>
+<li><a class="" href="graphics.html"><span class="header-section-number">7</span> Graphics</a></li>
+<li><a class="" href="user-feedback.html"><span class="header-section-number">8</span> User feedback</a></li>
+<li><a class="" href="uploads-and-downloads.html"><span class="header-section-number">9</span> Uploads and downloads</a></li>
+<li><a class="" href="dynamic-ui.html"><span class="header-section-number">10</span> Dynamic UI</a></li>
+<li><a class="" href="bookmarking.html"><span class="header-section-number">11</span> Bookmarking</a></li>
+<li><a class="" href="tidy-evaluation.html"><span class="header-section-number">12</span> Tidy evaluation</a></li>
+<li class="book-part">Mastering reactivity</li>
+<li><a class="" href="why-reactivity.html"><span class="header-section-number">13</span> Why reactivity?</a></li>
+<li><a class="" href="the-reactive-graph.html"><span class="header-section-number">14</span> The reactive graph</a></li>
+<li><a class="" href="reactive-building-blocks.html"><span class="header-section-number">15</span> Reactive building blocks</a></li>
+<li><a class="" href="escaping-the-graph.html"><span class="header-section-number">16</span> Escaping the graph</a></li>
+<li class="book-part">Best practices</li>
+<li><a class="" href="general-guidelines.html"><span class="header-section-number">17</span> General guidelines</a></li>
+<li><a class="" href="functions.html"><span class="header-section-number">18</span> Functions</a></li>
+<li><a class="" href="shiny-modules.html"><span class="header-section-number">19</span> Shiny modules</a></li>
+<li><a class="" href="packages.html"><span class="header-section-number">20</span> Packages</a></li>
+<li><a class="" href="testing.html"><span class="header-section-number">21</span> Testing</a></li>
+<li><a class="" href="security.html"><span class="header-section-number">22</span> Security</a></li>
+<li><a class="" href="performance.html"><span class="header-section-number">23</span> Performance</a></li>
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/howardbaek/mastering-shiny-book-exercises-solutions-book">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -73,7 +93,7 @@ the table of contents to find the page you are looking for.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-23.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -81,34 +101,6 @@ the table of contents to find the page you are looking for.</p>
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
-</script>
+</footer>
 </body>
 </html>
