@@ -1,0 +1,110 @@
+# Layout, themes, HTML
+
+
+
+## 6.2.4 Exercises {-}
+
+1. Documentation on `sidebarLayout()`: "By default, the sidebar takes up 1/3 of the width, and the main panel 2/3". In other words, given the width is 12 columns, the sidebar is made up of 4 columns and the main panel 8 columns. 
+
+
+```r
+# Recreate sidebarLayout()
+fluidRow(
+  # sidebar (4 columns)
+  column(4, 
+         ...
+  ),
+  # # main panel (8 columns)
+  column(8, 
+         ...
+  )
+)
+```
+
+
+
+2. 
+
+```r
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Central limit theorem"),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("m", "Number of samples:", 2, min = 1, max = 100)
+    ),
+    mainPanel(
+      plotOutput("hist")
+    ),
+    # Modified to put position of sidebar on the right
+    position = "right"
+  )
+)
+server <- function(input, output, session) {
+  output$hist <- renderPlot({
+    means <- replicate(1e4, mean(runif(input$m)))
+    hist(means, breaks = 20)
+  }, res = 96)
+}
+
+
+shinyApp(ui, server)
+```
+
+
+
+3.  Reference: https://shiny.rstudio.com/articles/layout-guide.html
+
+```r
+# UI ONLY
+library(shiny)
+library(ggplot2)
+
+dataset <- diamonds
+
+ui <- fluidPage(
+  
+  title = "Diamonds Explorer",
+  
+  fluidRow(
+    column(6,
+           # First plot taking up half the width
+           plotOutput("plot1")
+    ),
+    
+    column(6,
+           # Second plot taking up half the width
+           plotOutput("plot2")
+    )
+  ),
+  # Horizontal Line
+  hr(),
+  
+  fluidRow(
+    column(3,
+           h4("Diamonds Explorer"),
+           sliderInput('sampleSize', 'Sample Size', 
+                       min=1, max=nrow(dataset), value=min(1000, nrow(dataset)), 
+                       step=500, round=0),
+           br(),
+           checkboxInput('jitter', 'Jitter'),
+           checkboxInput('smooth', 'Smooth')
+    ),
+    column(4, offset = 1,
+           selectInput('x', 'X', names(dataset)),
+           selectInput('y', 'Y', names(dataset), names(dataset)[[2]]),
+           selectInput('color', 'Color', c('None', names(dataset)))
+    ),
+    column(4,
+           selectInput('facet_row', 'Facet Row', c(None='.', names(dataset))),
+           selectInput('facet_col', 'Facet Column', c(None='.', names(dataset)))
+    )
+  )
+)
+
+shinyApp(ui, server)
+```
+
+
+

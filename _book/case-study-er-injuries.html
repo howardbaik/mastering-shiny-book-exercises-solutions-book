@@ -10,10 +10,13 @@
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Case study: ER injuries | Mastering Shiny Solutions">
 <meta property="og:type" content="book">
+<meta property="og:url" content="https://mastering-shiny-solutions.netlify.app/case-study-er-injuries.html">
+<meta property="og:image" content="https://mastering-shiny-solutions.netlify.app/img/mastering-shiny-cover.png">
 <meta property="og:description" content='4.8 Exercises Solution at Mastering Shiny Solutions 2021 injuries &lt;- vroom::vroom("neiss/injuries.tsv.gz") injuries # Original code injuries %&gt;%  mutate(diag = fct_lump(fct_infreq(diag), n = 5))...'>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 4 Case study: ER injuries | Mastering Shiny Solutions">
 <meta name="twitter:description" content='4.8 Exercises Solution at Mastering Shiny Solutions 2021 injuries &lt;- vroom::vroom("neiss/injuries.tsv.gz") injuries # Original code injuries %&gt;%  mutate(diag = fct_lump(fct_infreq(diag), n = 5))...'>
+<meta name="twitter:image" content="https://mastering-shiny-solutions.netlify.app/img/mastering-shiny-cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -91,15 +94,15 @@
 
 <span class="co"># Original code</span>
 <span class="va">injuries</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>diag <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump</a></span><span class="op">(</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="va">diag</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">diag</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu">mutate</span><span class="op">(</span>diag <span class="op">=</span> <span class="fu">fct_lump</span><span class="op">(</span><span class="fu">fct_infreq</span><span class="op">(</span><span class="va">diag</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">diag</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Flipped code</span>
 <span class="va">injuries</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>diag <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump</a></span><span class="op">(</span><span class="va">diag</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">diag</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu">mutate</span><span class="op">(</span>diag <span class="op">=</span> <span class="fu">fct_infreq</span><span class="op">(</span><span class="fu">fct_lump</span><span class="op">(</span><span class="va">diag</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">diag</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>If you flip <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> and <code><a href="https://forcats.tidyverse.org/reference/fct_lump.html">fct_lump()</a></code>, than you order the output by the sum of the weight of each diagnosis.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>
@@ -230,7 +233,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-26.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -6,14 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 16 Escaping the graph | Mastering Shiny Solutions</title>
 <meta name="author" content="Howard Baek">
-<meta name="description" content="There are no exercises in this chapter.">
+<meta name="description" content='16.3.4 Exercises  library(shiny) ui &lt;- fluidPage(  actionButton("rnorm", "Normal"),  actionButton("runif", "Uniform"),  plotOutput("plot") ) server &lt;- function(input, output, session) {  r &lt;-...'>
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 16 Escaping the graph | Mastering Shiny Solutions">
 <meta property="og:type" content="book">
-<meta property="og:description" content="There are no exercises in this chapter.">
+<meta property="og:url" content="https://mastering-shiny-solutions.netlify.app/escaping-the-graph.html">
+<meta property="og:image" content="https://mastering-shiny-solutions.netlify.app/img/mastering-shiny-cover.png">
+<meta property="og:description" content='16.3.4 Exercises  library(shiny) ui &lt;- fluidPage(  actionButton("rnorm", "Normal"),  actionButton("runif", "Uniform"),  plotOutput("plot") ) server &lt;- function(input, output, session) {  r &lt;-...'>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 16 Escaping the graph | Mastering Shiny Solutions">
-<meta name="twitter:description" content="There are no exercises in this chapter.">
+<meta name="twitter:description" content='16.3.4 Exercises  library(shiny) ui &lt;- fluidPage(  actionButton("rnorm", "Normal"),  actionButton("runif", "Uniform"),  plotOutput("plot") ) server &lt;- function(input, output, session) {  r &lt;-...'>
+<meta name="twitter:image" content="https://mastering-shiny-solutions.netlify.app/img/mastering-shiny-cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -78,8 +81,97 @@
 <h1>
 <span class="header-section-number">16</span> Escaping the graph<a class="anchor" aria-label="anchor" href="#escaping-the-graph"><i class="fas fa-link"></i></a>
 </h1>
-<p>There are no exercises in this chapter.</p>
+<div id="exercises-16" class="section level2 unnumbered">
+<h2>16.3.4 Exercises<a class="anchor" aria-label="anchor" href="#exercises-16"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>
+</ol>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"rnorm"</span>, <span class="st">"Normal"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"runif"</span>, <span class="st">"Uniform"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactiveValues.html">reactiveValues</a></span><span class="op">(</span>random_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"numeric"</span>, length <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">rnorm</span>, <span class="op">{</span>
+    <span class="va">r</span><span class="op">$</span><span class="va">random_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">runif</span>, <span class="op">{</span>
+    <span class="va">r</span><span class="op">$</span><span class="va">random_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="co"># Only show plot if input$rnorm </span>
+    <span class="co"># OR input$runif is provided</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">rnorm</span> <span class="op">|</span> <span class="va">input</span><span class="op">$</span><span class="va">runif</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">r</span><span class="op">$</span><span class="va">random_data</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>
+</ol>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op">(</span><span class="st">"type"</span>, <span class="st">"type"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Normal"</span>, <span class="st">"Uniform"</span><span class="op">)</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"go"</span>, <span class="st">"go"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactiveValues.html">reactiveValues</a></span><span class="op">(</span>random_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"numeric"</span>, length <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">go</span>, <span class="op">{</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">type</span> <span class="op">==</span> <span class="st">"Normal"</span><span class="op">)</span> <span class="op">{</span>
+      <span class="va">r</span><span class="op">$</span><span class="va">random_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+      <span class="va">r</span><span class="op">$</span><span class="va">random_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+    <span class="op">}</span>
+  <span class="op">}</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="co"># Only show plot if "go" is clicked</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">go</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">r</span><span class="op">$</span><span class="va">random_data</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>You can do that for the second UI but not the first because the second UI has the “go” actionButton.</li>
+</ol>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op">(</span><span class="st">"type"</span>, <span class="st">"type"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Normal"</span>, <span class="st">"Uniform"</span><span class="op">)</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"go"</span>, <span class="st">"go"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html">reactive</a></span><span class="op">(</span><span class="op">{</span> 
+    <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">type</span> <span class="op">==</span> <span class="st">"Normal"</span><span class="op">)</span> <span class="op">{</span>
+      <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">type</span> <span class="op">==</span> <span class="st">"Uniform"</span><span class="op">)</span> <span class="op">{</span>
+      <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+    <span class="op">}</span>
+  <span class="op">}</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">go</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu">r</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+  
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+
+</div>
 </div>
 
 
@@ -89,7 +181,10 @@
 <div class="next"><a href="general-guidelines.html"><span class="header-section-number">17</span> General guidelines</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#escaping-the-graph"><span class="header-section-number">16</span> Escaping the graph</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#escaping-the-graph"><span class="header-section-number">16</span> Escaping the graph</a></li>
+<li><a class="nav-link" href="#exercises-16">16.3.4 Exercises</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -106,7 +201,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-26.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
