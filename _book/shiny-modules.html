@@ -292,24 +292,56 @@
 <li>
 </ol>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Module UI---</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
+
+<span class="co"># Module UI---</span>
 <span class="va">ymdDateUI</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">id</span>, <span class="va">label</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">label</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">label</span>, <span class="st">" (yyyy-mm-dd)"</span><span class="op">)</span>
-
+  
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textInput.html">textInput</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/NS.html">NS</a></span><span class="op">(</span><span class="va">id</span>, <span class="st">"date"</span><span class="op">)</span>, <span class="va">label</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">textOutput</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/NS.html">NS</a></span><span class="op">(</span><span class="va">id</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span>
 
-<span class="co"># Module server</span>
-<span class="va">ymdDateServer</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">id</span>, <span class="va">x</span>, <span class="va">filter</span> <span class="op">=</span> <span class="va">is.numeric</span><span class="op">)</span> <span class="op">{</span>
-
+<span class="co"># Module server---</span>
+<span class="va">ymdDateServer</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">id</span><span class="op">)</span> <span class="op">{</span>
+  
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/moduleServer.html">moduleServer</a></span><span class="op">(</span><span class="va">id</span>, <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"%Y-%m-%d"</span><span class="op">)</span>  
-    
+    <span class="co"># display a message if the entered value is not a valid date</span>
+    <span class="co"># NOTE: I changed the render function to renderPrint after getting a </span>
+    <span class="co"># weird error message with renderText. See below SO question:</span>
+    <span class="co"># https://stackoverflow.com/questions/62814804/warning-error-in-cat-argument-1-type-list-cannot-be-handled-by-cat-no-s</span>
+    <span class="va">output</span><span class="op">$</span><span class="va">error</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span><span class="op">(</span><span class="op">{</span>
+      <span class="co"># https://mastering-shiny.org/action-feedback.html?q=req()#req-and-validation</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">date</span>,cancelOutput <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+      
+      <span class="va">date_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">date</span>, <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
+      <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">date_mod</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Invalid date"</span><span class="op">)</span>
+      <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">date_mod</span><span class="op">)</span><span class="op">)</span>
+      <span class="op">}</span>
+    <span class="op">}</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<span class="op">}</span>
+
+
+
+<span class="co"># Generate app---</span>
+<span class="va">ymdDateApp</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+    <span class="fu">ymdDateUI</span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"Date"</span><span class="op">)</span>
+  <span class="op">)</span>
+  
+  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu">ymdDateServer</span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span>
+  <span class="op">}</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span>
+<span class="op">}</span> 
+
+
+<span class="fu">ymdDateApp</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 
 </div>
 </div>
@@ -339,7 +371,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-30.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

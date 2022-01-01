@@ -82,16 +82,16 @@
 <!--bookdown:body:start-->
 <div id="welcome" class="section level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
-<p><img src="img/mastering-shiny-cover.png" class="cover" width="250" height="328"/>This is the WIP website for Mastering Shiny Solutions, a solution manual to the exercises in <a href="https://mastering-shiny.org/">Mastering Shiny</a>, written by Hadley Wickham.</p>
-<p><a href="https://mastering-shiny-solutions.org/">Mastering Shiny Solutions 2021</a>, by Maya Gans and Marly Gotti, was released in early 2021. Since then, there have been various changes to the exercises in Mastering Shiny, and this book serves as an <em>updated version</em> of Mastering Shiny Solutions 2021. A few solutions in this book defer to those provided in Mastering Shiny Solutions 2021. Also, some exercises don’t contain solutions, and for these exercises, the author writes, “Not sure.”</p>
+<p><img src="img/mastering-shiny-cover.png" class="cover" width="250" height="328"/>This is the website for Mastering Shiny Solutions, a solutions manual for the exercises in <a href="https://mastering-shiny.org/">Mastering Shiny</a>, written by Hadley Wickham.</p>
+<p><a href="https://mastering-shiny-solutions.org/">Mastering Shiny Solutions 2021</a>, by Maya Gans and Marly Gotti, was released in early 2021. Since then, there have been various changes to the exercises in Mastering Shiny, and this book serves as an <em>updated version</em>. A few solutions in this book defer to those provided in Mastering Shiny Solutions 2021. Also, some exercises don’t contain solutions, and for these exercises, the author writes, “Not sure.”</p>
 <p>If my work has helped you, <a href="https://ko-fi.com/howardbaek">you can buy me a coffee on Ko-fi!</a></p>
 <div id="about-the-author" class="section level2 unnumbered">
 <h2 class="unnumbered">About the Author</h2>
-<p><a href="http://insidethetv.rbind.io/"><em>Howard Baek</em></a> is a Master’s student in Biostatistics at the University of Washington. His past experiences include a <a href="https://github.com/orgs/UW-Upwelling-Project/teams/seattle">Machine Learning Internship</a> at Northwest Fisheries Science Center (NWFSC), where he created an algorithm in R to detect an oceanographic process, <a href="https://github.com/howardbaek/addiction-dashboard-simple">NIH-funded Research Assistantship</a> at the Behavioral Research In Technology and Engineering (BRiTE) Center, where he developed a Shiny Dashboard that allows patients and clinicians in addiction treatment to monitor patients’ progress and goals over time, and an <a href="https://github.com/howardbaek/mooc-project-github">Educational Data Mining Research Internship</a> at George Mason University, where he analyzed real world datasets from a Stanford online course and created a Shiny Dashboard for instructors to interact with the dataset.</p>
+<p><a href="http://insidethetv.rbind.io/"><em>Howard Baek</em></a> is a Master’s student in Biostatistics at the University of Washington. His past experiences include a <a href="https://github.com/howardbaek/addiction-dashboard-simple">NIH-funded Research Assistantship</a> at the Behavioral Research In Technology and Engineering (BRiTE) Center, where he developed a <strong>Shiny Dashboard</strong> that allows patients and clinicians in addiction treatment to monitor patients’ progress and goals over time and an <a href="https://github.com/howardbaek/mooc-project-github">Educational Data Mining Research Internship</a> at George Mason University, where he analyzed real world datasets from a Stanford online course and created a <strong>Shiny Dashboard</strong> for instructors to interact with the dataset.</p>
 </div>
 <div id="acknowledgments" class="section level2 unnumbered">
 <h2 class="unnumbered">Acknowledgments</h2>
-<p>Alison Hill and Desirée De Leon’s talk, <a href="https://youtu.be/QcE4RBH2auQ?t=1881">Sharing on Short Notice</a>, made getting this book online smooth and easy.</p>
+<p>The author is grateful for Hadley Wickham writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, <a href="https://youtu.be/QcE4RBH2auQ?t=1881">Sharing on Short Notice</a>, made getting this book online smooth and easy.</p>
 <!--chapter:end:index.Rmd-->
 </div>
 </div>
@@ -1584,24 +1584,56 @@
 <ol start="3" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Module UI---</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>ymdDateUI <span class="ot">&lt;-</span> <span class="cf">function</span>(id, label) {</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(label, <span class="st">&quot; (yyyy-mm-dd)&quot;</span>)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">textInput</span>(<span class="fu">NS</span>(id, <span class="st">&quot;date&quot;</span>), label),</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">textOutput</span>(<span class="fu">NS</span>(id, <span class="st">&quot;error&quot;</span>))</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Module server</span></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>ymdDateServer <span class="ot">&lt;-</span> <span class="cf">function</span>(id, x, <span class="at">filter =</span> is.numeric) {</span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moduleServer</span>(id, <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">strptime</span>(x, <span class="st">&quot;%Y-%m-%d&quot;</span>)  </span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Module UI---</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>ymdDateUI <span class="ot">&lt;-</span> <span class="cf">function</span>(id, label) {</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(label, <span class="st">&quot; (yyyy-mm-dd)&quot;</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">textInput</span>(<span class="fu">NS</span>(id, <span class="st">&quot;date&quot;</span>), label),</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">textOutput</span>(<span class="fu">NS</span>(id, <span class="st">&quot;error&quot;</span>))</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Module server---</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>ymdDateServer <span class="ot">&lt;-</span> <span class="cf">function</span>(id) {</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moduleServer</span>(id, <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display a message if the entered value is not a valid date</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span><span class="al">NOTE</span><span class="co">: I changed the render function to renderPrint after getting a </span></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># weird error message with renderText. See below SO question:</span></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># https://stackoverflow.com/questions/62814804/warning-error-in-cat-argument-1-type-list-cannot-be-handled-by-cat-no-s</span></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>error <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>      <span class="co"># https://mastering-shiny.org/action-feedback.html?q=req()#req-and-validation</span></span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">req</span>(input<span class="sc">$</span>date,<span class="at">cancelOutput =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>      date_mod <span class="ot">&lt;-</span> <span class="fu">strptime</span>(input<span class="sc">$</span>date, <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.na</span>(date_mod)) {</span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="st">&quot;Invalid date&quot;</span>)</span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="fu">as.Date</span>(date_mod))</span>
+<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb47-31"><a href="#cb47-31" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb47-32"><a href="#cb47-32" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb47-33"><a href="#cb47-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb47-34"><a href="#cb47-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-35"><a href="#cb47-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate app---</span></span>
+<span id="cb47-38"><a href="#cb47-38" aria-hidden="true" tabindex="-1"></a>ymdDateApp <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb47-39"><a href="#cb47-39" aria-hidden="true" tabindex="-1"></a>  ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb47-40"><a href="#cb47-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ymdDateUI</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;Date&quot;</span>)</span>
+<span id="cb47-41"><a href="#cb47-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb47-42"><a href="#cb47-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-43"><a href="#cb47-43" aria-hidden="true" tabindex="-1"></a>  server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ymdDateServer</span>(<span class="st">&quot;date&quot;</span>)</span>
+<span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shinyApp</span>(ui, server)</span>
+<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-50"><a href="#cb47-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ymdDateApp</span>()</span></code></pre></div>
 <!--chapter:end:19-shiny-modules.Rmd-->
 </div>
 </div>
@@ -1649,7 +1681,7 @@
   <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-30.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

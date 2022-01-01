@@ -236,23 +236,55 @@ summaryApp()
 3.
 
 ```r
+library(shiny)
+
 # Module UI---
 ymdDateUI <- function(id, label) {
   label <- paste0(label, " (yyyy-mm-dd)")
-
+  
   fluidRow(
     textInput(NS(id, "date"), label),
     textOutput(NS(id, "error"))
   )
 }
 
-# Module server
-ymdDateServer <- function(id, x, filter = is.numeric) {
-
+# Module server---
+ymdDateServer <- function(id) {
+  
   moduleServer(id, function(input, output, session) {
-    strptime(x, "%Y-%m-%d")  
-    
+    # display a message if the entered value is not a valid date
+    # NOTE: I changed the render function to renderPrint after getting a 
+    # weird error message with renderText. See below SO question:
+    # https://stackoverflow.com/questions/62814804/warning-error-in-cat-argument-1-type-list-cannot-be-handled-by-cat-no-s
+    output$error <- renderPrint({
+      # https://mastering-shiny.org/action-feedback.html?q=req()#req-and-validation
+      req(input$date,cancelOutput = TRUE)
+      
+      date_mod <- strptime(input$date, "%Y-%m-%d")
+      if (is.na(date_mod)) {
+        print("Invalid date")
+      } else {
+        print(as.Date(date_mod))
+      }
+    })
   })
 }
+
+
+
+# Generate app---
+ymdDateApp <- function() {
+  ui <- fluidPage(
+    ymdDateUI("date", "Date")
+  )
+  
+  server <- function(input, output, session) {
+    ymdDateServer("date")
+  }
+  shinyApp(ui, server)
+} 
+
+
+ymdDateApp()
 ```
 

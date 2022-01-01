@@ -1,7 +1,7 @@
 --- 
 title: "Mastering Shiny Solutions"
 author: "Howard Baek"
-date: "2021-12-30"
+date: "2021-12-31"
 site: bookdown::bookdown_site
 documentclass: book
 url: https://mastering-shiny-solutions.netlify.app/
@@ -17,18 +17,18 @@ csl: chicago-fullnote-bibliography.csl
 
 # Welcome {-}
 
-<img src="img/mastering-shiny-cover.png" class="cover" width="250" height="328"/>This is the WIP website for Mastering Shiny Solutions, a solution manual to the exercises in [Mastering Shiny](https://mastering-shiny.org/), written by Hadley Wickham. 
+<img src="img/mastering-shiny-cover.png" class="cover" width="250" height="328"/>This is the website for Mastering Shiny Solutions, a solutions manual for the exercises in [Mastering Shiny](https://mastering-shiny.org/), written by Hadley Wickham. 
 
-[Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/), by Maya Gans and Marly Gotti, was released in early 2021. Since then, there have been various changes to the exercises in Mastering Shiny, and this book serves as an _updated version_ of Mastering Shiny Solutions 2021. A few solutions in this book defer to those provided in Mastering Shiny Solutions 2021. Also, some exercises don't contain solutions, and for these exercises, the author writes, "Not sure".
+[Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/), by Maya Gans and Marly Gotti, was released in early 2021. Since then, there have been various changes to the exercises in Mastering Shiny, and this book serves as an _updated version_. A few solutions in this book defer to those provided in Mastering Shiny Solutions 2021. Also, some exercises don't contain solutions, and for these exercises, the author writes, "Not sure".
 
 If my work has helped you, [you can buy me a coffee on Ko-fi!](https://ko-fi.com/howardbaek)
 
 
 ## About the Author {-}
 
-[_Howard Baek_](http://insidethetv.rbind.io/) is a Master’s student in Biostatistics at the University of Washington. His past experiences include a [Machine Learning Internship](https://github.com/orgs/UW-Upwelling-Project/teams/seattle) at Northwest Fisheries Science Center (NWFSC), where he created an algorithm in R to detect an oceanographic process, [NIH-funded Research Assistantship](https://github.com/howardbaek/addiction-dashboard-simple) at the Behavioral Research In Technology and Engineering (BRiTE) Center, where he developed a Shiny Dashboard that allows patients and clinicians in addiction treatment to monitor patients’ progress and goals over time, and an [Educational Data Mining Research Internship](https://github.com/howardbaek/mooc-project-github) at George Mason University, where he analyzed real world datasets from a Stanford online course and created a Shiny Dashboard for instructors to interact with the dataset.
+[_Howard Baek_](http://insidethetv.rbind.io/) is a Master’s student in Biostatistics at the University of Washington. His past experiences include a [NIH-funded Research Assistantship](https://github.com/howardbaek/addiction-dashboard-simple) at the Behavioral Research In Technology and Engineering (BRiTE) Center, where he developed a __Shiny Dashboard__ that allows patients and clinicians in addiction treatment to monitor patients’ progress and goals over time and an [Educational Data Mining Research Internship](https://github.com/howardbaek/mooc-project-github) at George Mason University, where he analyzed real world datasets from a Stanford online course and created a __Shiny Dashboard__ for instructors to interact with the dataset.
 
 
 ## Acknowledgments {-}
 
-Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), made getting this book online smooth and easy.
+The author is grateful for Hadley Wickham writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), made getting this book online smooth and easy.
