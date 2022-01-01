@@ -6,7 +6,12 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ## 2.2.8 Exercises {-}
 
-1. You can fill in the parameter, `value`, inside `textInput()`: `textInput("name", value = "Your name)`
+1. Provide `value` parameter: `textInput("name", value = "Your name")`
+
+2. 
+```{r}
+?shiny::sliderInput()
+```
 
 
 3. 
@@ -36,7 +41,11 @@ shinyApp(ui, server)
 ```
 
 
-4. The documentation states, "It's also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the  `<optgroup>` HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature."
+4. `selectInput()` documentation:
+
+::: {.rmdnote}
+It's also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the  `<optgroup>` HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature.
+:::
 
 
 ## 2.3.5 Exercises {-}
@@ -44,7 +53,7 @@ shinyApp(ui, server)
 1. 
 
 a) `renderPrint(summary(mtcars))` should be paired with `verbatimTextOutput` since it is console output.
-b) `renderText("Good morning!")` should be paired with `textOutput` since it is regular text
+b) `renderText("Good morning!")` should be paired with `textOutput` since it is regular text.
 c) `renderPrint(t.test(1:5, 2:6))` should be paired with `verbatimTextOutput` since it is console output.
 d) `renderText(str(lm(mpg ~ wt, data = mtcars)))` should be paired with `verbatimTextOutput` since it is console output.
 
@@ -66,7 +75,7 @@ shinyApp(ui, server)
 
 
 
-3. (Borrowed from https://mastering-shiny-solutions.org/basic-ui.html#exercise-3.3.5.3)
+3.
 ```{r}
 library(shiny)
 

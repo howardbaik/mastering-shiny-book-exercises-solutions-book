@@ -1,7 +1,7 @@
 --- 
 title: "Mastering Shiny Solutions"
 author: "Howard Baek"
-date: "2021-12-31"
+date: "2022-01-01"
 site: bookdown::bookdown_site
 documentclass: book
 url: https://mastering-shiny-solutions.netlify.app/

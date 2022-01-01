@@ -1,7 +1,7 @@
 --- 
 title: "Mastering Shiny Solutions"
 author: "Howard Baek"
-date: "2021-12-31"
+date: "2022-01-01"
 site: bookdown::bookdown_site
 documentclass: book
 url: https://mastering-shiny-solutions.netlify.app/
@@ -164,12 +164,12 @@ server <- function(input, output, session) {
     dataset <- reactive({
         get(input$dataset, "package:ggplot2")
     })
-    # Fixed spelling
+    # 2nd Bug: Spelling
     output$summary <- renderPrint({
         summary(dataset())
     })
     output$plot <- renderPlot({
-      # dataset -> dataset() because its a reactive
+      # 3rd Bug: dataset -> dataset() 
         plot(dataset())
     }, res = 96)
 }
@@ -186,7 +186,13 @@ shinyApp(ui, server)
 
 ## 2.2.8 Exercises {-}
 
-1. You can fill in the parameter, `value`, inside `textInput()`: `textInput("name", value = "Your name)`
+1. Provide `value` parameter: `textInput("name", value = "Your name")`
+
+2. 
+
+```r
+?shiny::sliderInput()
+```
 
 
 3. 
@@ -217,7 +223,11 @@ shinyApp(ui, server)
 ```
 
 
-4. The documentation states, "It's also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the  `<optgroup>` HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature."
+4. `selectInput()` documentation:
+
+::: {.rmdnote}
+It's also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the  `<optgroup>` HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature.
+:::
 
 
 ## 2.3.5 Exercises {-}
@@ -225,7 +235,7 @@ shinyApp(ui, server)
 1. 
 
 a) `renderPrint(summary(mtcars))` should be paired with `verbatimTextOutput` since it is console output.
-b) `renderText("Good morning!")` should be paired with `textOutput` since it is regular text
+b) `renderText("Good morning!")` should be paired with `textOutput` since it is regular text.
 c) `renderPrint(t.test(1:5, 2:6))` should be paired with `verbatimTextOutput` since it is console output.
 d) `renderText(str(lm(mpg ~ wt, data = mtcars)))` should be paired with `verbatimTextOutput` since it is console output.
 
@@ -248,7 +258,7 @@ shinyApp(ui, server)
 
 
 
-3. (Borrowed from https://mastering-shiny-solutions.org/basic-ui.html#exercise-3.3.5.3)
+3.
 
 ```r
 library(shiny)
@@ -299,48 +309,64 @@ shinyApp(ui, server)
 
 1.
 
-
-```r
-server1 <- function(input, output, server) {
-  input$greeting <- renderText(paste0("Hello ", name))
-}
-```
+::: {.rmdnote}
+Server 1
 
 - `input$greeting` --> `output$greeting`
 - Inside `renderText`, `name` --> `input$name` 
-- Fixed code:  `output$greeting <- renderText(paste0("Hello ", input$name))`
+- Fixed code:
 
+
+```r
+server1 <- function(input, output, server) {
+  output$greeting <- renderText(paste0("Hello ", input$name))
+}
+```
+:::
+
+
+::: {.rmdnote}
+Server 2
+
+- Make `greeting` a reactive: `greeting <- reactive(paste0("Hello ", input$name))`
+- Since `greeting` is now a reactive, add parenthesis around it: `output$greeting <- renderText(greeting())`
+- Fixed code:
 
 
 ```r
 server2 <- function(input, output, server) {
-  greeting <- paste0("Hello ", input$name)
-  output$greeting <- renderText(greeting)
+  greeting <- reactive(paste0("Hello ", input$name))
+  output$greeting <- renderText(greeting())
 }
 ```
+:::
 
-- You can make `greeting` a reactive by adding `reactive()`: `greeting <- reactive(paste0("Hello ", input$name))`
-- Since `greeting` is now a reactive, you need to add parenthesis around it: `output$greeting <- renderText(greeting())`
 
+::: {.rmdnote}
+Server 3 
+
+- Spelling error: `output$greting` --> `output$greeting`
+- Missing `renderText()`
+- Fixed code: 
 
 
 ```r
 server3 <- function(input, output, server) {
-  output$greting <- paste0("Hello", input$name)
+  output$greeting <- renderText(paste0("Hello ", input$name))
 }
 ```
+:::
 
-- Spelling error: `output$greting` --> `output$greeting`
-- Missing `renderText()`
-- Fixed code: `output$greeting <- renderText(paste0("Hello ", input$name))`
 
-<br>
 
 2. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/basic-reactivity.html#solution-15)
 
-<br>
 
-3. Code will fail because of df[[input$var]]. When you use `range()` or `var()`, other readers won't know if you are using a reactive or the built-in R function. 
+3. When you use `range()` or `var()`, other readers won't know if you are using a reactive or the built-in R function.
+
+::: {.rmdwarning}
+Not sure why code fails, but maybe reading the chapter on [Tidy evaluation](https://mastering-shiny.org/action-tidy.html#action-tidy) will help.
+:::
 
 <!--chapter:end:03-basic-reactivity.Rmd-->
 
@@ -355,6 +381,8 @@ server3 <- function(input, output, server) {
 2. 
 
 ```r
+library(tidyverse)
+
 injuries <- vroom::vroom("neiss/injuries.tsv.gz")
 injuries
 
@@ -371,7 +399,22 @@ injuries %>%
   summarise(n = as.integer(sum(weight)))
 ```
 
-If you flip `fct_infreq()` and `fct_lump()`, than you order the output by the sum of the weight of each diagnosis.
+::: {.rmdcaution}
+If you want to get the data on your own computer, run this code:
+
+```r
+dir.create("neiss")
+#> Warning in dir.create("neiss"): 'neiss' already exists
+download <- function(name) {
+  url <- "https://github.com/hadley/mastering-shiny/raw/master/neiss/"
+  download.file(paste0(url, name), paste0("neiss/", name), quiet = TRUE)
+}
+download("injuries.tsv.gz")
+download("population.tsv")
+download("products.tsv")
+```
+
+:::
 
 
 3.
@@ -383,14 +426,12 @@ library(forcats)
 library(vroom)
 library(shiny)
 
-if (!exists("injuries")) {
-  injuries <- vroom::vroom("neiss/injuries.tsv.gz")
-  products <- vroom::vroom("neiss/products.tsv")
-  population <- vroom::vroom("neiss/population.tsv")
-}
+injuries <- vroom::vroom("neiss/injuries.tsv.gz")
+products <- vroom::vroom("neiss/products.tsv")
+population <- vroom::vroom("neiss/population.tsv")
+
 
 ui <- fluidPage(
-  #<< first-row
   fluidRow(
     column(8,
            selectInput("code", "Product",
@@ -399,10 +440,9 @@ ui <- fluidPage(
            )
     ),
     column(2, selectInput("y", "Y axis", c("rate", "count"))),
-    # Input control that lets the user decide how many rows to show in the summary tables
+    # lets the user decide how many rows to show in the summary tables
     column(2, numericInput("num_rows", "Number of Rows", value = 5, min = 0, max = 6))
   ),
-  #>>
   fluidRow(
     column(4, tableOutput("diag")),
     column(4, tableOutput("body_part")),
@@ -411,12 +451,10 @@ ui <- fluidPage(
   fluidRow(
     column(12, plotOutput("age_sex"))
   ),
-  #<< narrative-ui
   fluidRow(
     column(2, actionButton("story", "Tell me a story")),
     column(10, textOutput("narrative"))
   )
-  #>>
 )
 
 count_top <- function(df, var, n = 5) {
@@ -429,11 +467,9 @@ count_top <- function(df, var, n = 5) {
 server <- function(input, output, session) {
   selected <- reactive(injuries %>% filter(prod_code == input$code))
   
-  #<< tables
   output$diag <- renderTable(count_top(selected(), diag) %>% slice(1:input$num_rows), width = "100%")
   output$body_part <- renderTable(count_top(selected(), body_part) %>% slice(1:input$num_rows), width = "100%")
   output$location <- renderTable(count_top(selected(), location) %>% slice(1:input$num_rows), width = "100%")
-  #>>
   
   summary <- reactive({
     selected() %>%
@@ -442,7 +478,6 @@ server <- function(input, output, session) {
       mutate(rate = n / population * 1e4)
   })
   
-  #<< plot
   output$age_sex <- renderPlot({
     if (input$y == "count") {
       summary() %>%
@@ -456,15 +491,12 @@ server <- function(input, output, session) {
         labs(y = "Injuries per 10,000 people")
     }
   }, res = 96)
-  #>>
   
-  #<< narrative-server
   narrative_sample <- eventReactive(
     list(input$story, selected()),
     selected() %>% pull(narrative) %>% sample(1)
   )
   output$narrative <- renderText(narrative_sample())
-  #>>
 }
 
 shinyApp(ui, server)
@@ -489,7 +521,13 @@ There are no exercises in this chapter.
 
 ## 6.2.4 Exercises {-}
 
-1. Documentation on `sidebarLayout()`: "By default, the sidebar takes up 1/3 of the width, and the main panel 2/3". In other words, given the width is 12 columns, the sidebar is made up of 4 columns and the main panel 8 columns. 
+1. `sidebarLayout()` documentation: 
+
+::: {.rmdnote}
+By default, the sidebar takes up 1/3 of the width, and the main panel 2/3. 
+:::
+
+In other words, given the width is 12 columns, the sidebar is made up of 4 columns and the main panel 8 columns. 
 
 
 ```r
@@ -539,7 +577,12 @@ shinyApp(ui, server)
 
 
 
-3.  Reference: https://shiny.rstudio.com/articles/layout-guide.html
+3.  Reference: 
+
+::: {.rmdimportant}
+https://shiny.rstudio.com/articles/layout-guide.html
+:::
+
 
 ```r
 # UI ONLY

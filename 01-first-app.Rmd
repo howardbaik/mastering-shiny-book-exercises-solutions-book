@@ -124,12 +124,12 @@ server <- function(input, output, session) {
     dataset <- reactive({
         get(input$dataset, "package:ggplot2")
     })
-    # Fixed spelling
+    # 2nd Bug: Spelling
     output$summary <- renderPrint({
         summary(dataset())
     })
     output$plot <- renderPlot({
-      # dataset -> dataset() because its a reactive
+      # 3rd Bug: dataset -> dataset() 
         plot(dataset())
     }, res = 96)
 }

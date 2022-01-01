@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 2 Basic UI | Mastering Shiny Solutions</title>
 <meta name="author" content="Howard Baek">
-<meta name="description" content='2.2.8 Exercises You can fill in the parameter, value, inside textInput(): textInput("name", value = "Your name) library(shiny) ui &lt;- fluidPage(   sliderInput(inputId = "user_input",         label...'>
+<meta name="description" content='2.2.8 Exercises Provide value parameter: textInput("name", value = "Your name") ?shiny::sliderInput() library(shiny) ui &lt;- fluidPage(   sliderInput(inputId = "user_input",         label = "User...'>
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 2 Basic UI | Mastering Shiny Solutions">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://mastering-shiny-solutions.netlify.app/basic-ui.html">
 <meta property="og:image" content="https://mastering-shiny-solutions.netlify.app/img/mastering-shiny-cover.png">
-<meta property="og:description" content='2.2.8 Exercises You can fill in the parameter, value, inside textInput(): textInput("name", value = "Your name) library(shiny) ui &lt;- fluidPage(   sliderInput(inputId = "user_input",         label...'>
+<meta property="og:description" content='2.2.8 Exercises Provide value parameter: textInput("name", value = "Your name") ?shiny::sliderInput() library(shiny) ui &lt;- fluidPage(   sliderInput(inputId = "user_input",         label = "User...'>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 2 Basic UI | Mastering Shiny Solutions">
-<meta name="twitter:description" content='2.2.8 Exercises You can fill in the parameter, value, inside textInput(): textInput("name", value = "Your name) library(shiny) ui &lt;- fluidPage(   sliderInput(inputId = "user_input",         label...'>
+<meta name="twitter:description" content='2.2.8 Exercises Provide value parameter: textInput("name", value = "Your name") ?shiny::sliderInput() library(shiny) ui &lt;- fluidPage(   sliderInput(inputId = "user_input",         label = "User...'>
 <meta name="twitter:image" content="https://mastering-shiny-solutions.netlify.app/img/mastering-shiny-cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -85,10 +85,15 @@
 <h2>2.2.8 Exercises<a class="anchor" aria-label="anchor" href="#exercises-1"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li><p>You can fill in the parameter, <code>value</code>, inside <code><a href="https://rdrr.io/pkg/shiny/man/textInput.html">textInput()</a></code>: <code>textInput("name", value = "Your name)</code></p></li>
+<li><p>Provide <code>value</code> parameter: <code><a href="https://rdrr.io/pkg/shiny/man/textInput.html">textInput("name", value = "Your name")</a></code></p></li>
 <li>
 </ol>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
@@ -112,8 +117,12 @@
 
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li>The documentation states, “It’s also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the <code>&lt;optgroup&gt;</code> HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature.”</li>
+<li>
+<code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput()</a></code> documentation:</li>
 </ol>
+<div class="rmdnote">
+<p>It’s also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the <code>&lt;optgroup&gt;</code> HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature.</p>
+</div>
 </div>
 <div id="exercises-2" class="section level2 unnumbered">
 <h2>2.3.5 Exercises<a class="anchor" aria-label="anchor" href="#exercises-2"><i class="fas fa-link"></i></a>
@@ -125,7 +134,7 @@
 <li>
 <code><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint(summary(mtcars))</a></code> should be paired with <code>verbatimTextOutput</code> since it is console output.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText("Good morning!")</a></code> should be paired with <code>textOutput</code> since it is regular text</li>
+<code><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText("Good morning!")</a></code> should be paired with <code>textOutput</code> since it is regular text.</li>
 <li>
 <code><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint(t.test(1:5, 2:6))</a></code> should be paired with <code>verbatimTextOutput</code> since it is console output.</li>
 <li>
@@ -134,7 +143,7 @@
 <ol start="2" style="list-style-type: decimal">
 <li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
@@ -148,9 +157,9 @@
 
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>(Borrowed from <a href="https://mastering-shiny-solutions.org/basic-ui.html#exercise-3.3.5.3" class="uri">https://mastering-shiny-solutions.org/basic-ui.html#exercise-3.3.5.3</a>)</li>
+<li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
@@ -168,7 +177,7 @@
 <ol start="4" style="list-style-type: decimal">
 <li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glin.github.io/reactable/">reactable</a></span><span class="op">)</span>
 
@@ -212,7 +221,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-31.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2022-01-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
