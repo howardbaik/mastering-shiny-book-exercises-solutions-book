@@ -152,4 +152,7 @@ shinyApp(ui, server)
 ```
 
 
-5. Not sure
+::: {.rmdwarning}
+5. 
+Not sure, but I think that as is, `janitor::make_clean_names()` will not be re-run when `input$empty` changes since they are in different if statements.
+:::

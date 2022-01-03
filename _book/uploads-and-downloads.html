@@ -223,9 +223,12 @@
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<div class="rmdwarning">
 <ol start="5" style="list-style-type: decimal">
-<li>Not sure</li>
+<li>Not sure, but I think that as is, <code><a href="https://rdrr.io/pkg/janitor/man/make_clean_names.html">janitor::make_clean_names()</a></code> will not be re-run when <code>input$empty</code> changes since they are in different if statements.</li>
 </ol>
+</div>
+
 </div>
 </div>
   <div class="chapter-nav">
@@ -253,7 +256,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2022-01-01.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2022-01-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

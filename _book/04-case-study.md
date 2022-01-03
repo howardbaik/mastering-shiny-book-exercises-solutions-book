@@ -4,7 +4,11 @@
 
 ## 4.8 Exercises {-}
 
+
+::: {.rmdimportant}
 1. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/case-study-er-injuries.html#exercise-5.8.1) 
+:::
+
 
 2. 
 
@@ -131,4 +135,6 @@ shinyApp(ui, server)
 ```
 
 
+::: {.rmdimportant}
 4. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/case-study-er-injuries.html#exercise-5.8.4)
+:::

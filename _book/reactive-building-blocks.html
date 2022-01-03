@@ -88,7 +88,7 @@
 <li>
 <code>l1</code> is a reactive values class with values a and b, whereas <code>l2</code> is a list with a, a <code>reactiveVal</code> and b, a <code>reactiveVal</code>.</li>
 </ol>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactiveValues.html">reactiveValues</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">l2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html">reactiveVal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html">reactiveVal</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 
@@ -105,17 +105,24 @@
 <span class="co"># set reactive values in l2</span>
 <span class="va">l2</span><span class="op">$</span><span class="fu">a</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> 
 <span class="va">l2</span><span class="op">$</span><span class="fu">b</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<div class="rmdwarning">
 <ol start="2" style="list-style-type: decimal">
 <li>Not sure.</li>
 </ol>
 </div>
+</div>
 <div id="exercises-13" class="section level2 unnumbered">
 <h2>15.2.3 Exercises<a class="anchor" aria-label="anchor" href="#exercises-13"><i class="fas fa-link"></i></a>
 </h2>
+<div class="rmdwarning">
+<ol style="list-style-type: decimal">
+<li>Not sure.</li>
+</ol>
+</div>
 <ol start="2" style="list-style-type: decimal">
 <li>
 </ol>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
@@ -139,13 +146,19 @@
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>If I use <code><a href="https://rdrr.io/pkg/shiny/man/req.html">req()</a></code> and remove the <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code>, I get an error message: <code>Error: non-numeric argument to binary operator</code>.</li>
-<li>Not sure about what happens when I use <code>cancelOutput</code> argument, but the documentation states: “When req(…, cancelOutput = TRUE) is used, the”silent” exception is also raised, but it is treated slightly differently if one or more outputs are currently being evaluated. In those cases, the reactive chain does not proceed or update, but the output(s) are left is whatever state they happen to be in (whatever was their last valid state).”</li>
+<li>Not sure about what happens when I use <code>cancelOutput</code> argument, but the documentation states:</li>
 </ul>
+<div class="rmdnote">
+<p>When <code><a href="https://rdrr.io/pkg/shiny/man/req.html">req(..., cancelOutput = TRUE)</a></code> is used, the “silent” exception is also raised, but it is treated slightly differently if one or more outputs are currently being evaluated. In those cases, the reactive chain does not proceed or update, but the output(s) are left is whatever state they happen to be in (whatever was their last valid state).</p>
+</div>
 </div>
 <div id="exercises-14" class="section level2 unnumbered">
 <h2>15.4.3 Exercises<a class="anchor" aria-label="anchor" href="#exercises-14"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<ol style="list-style-type: decimal">
+<li>
+</ol>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
@@ -166,33 +179,12 @@
 <div id="exercises-15" class="section level2 unnumbered">
 <h2>15.5.4 Exercises<a class="anchor" aria-label="anchor" href="#exercises-15"><i class="fas fa-link"></i></a>
 </h2>
+<div class="rmdwarning">
 <ol style="list-style-type: decimal">
-<li>There is no output?</li>
+<li><p>Not sure.</p></li>
+<li><p>Not sure.</p></li>
 </ol>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textInput.html">textInput</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"name"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"add"</span>, <span class="st">"add"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span><span class="op">(</span><span class="st">"del"</span>, <span class="st">"delete"</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">textOutput</a></span><span class="op">(</span><span class="st">"names"</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactiveValues.html">reactiveValues</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">add</span>, <span class="op">{</span>
-    <span class="va">r</span><span class="op">$</span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="va">r</span><span class="op">$</span><span class="va">names</span>, <span class="va">input</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/updateTextInput.html">updateTextInput</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"name"</span>, value <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">del</span>, <span class="op">{</span>
-    <span class="va">r</span><span class="op">$</span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">r</span><span class="op">$</span><span class="va">names</span>, <span class="va">input</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/updateTextInput.html">updateTextInput</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"name"</span>, value <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-  
-  <span class="va">output</span><span class="op">$</span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="va">r</span><span class="op">$</span><span class="va">names</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+</div>
 
 </div>
 </div>
@@ -224,7 +216,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2022-01-01.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2022-01-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

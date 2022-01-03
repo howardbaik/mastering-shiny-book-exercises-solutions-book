@@ -60,9 +60,10 @@ shinyApp(ui, server)
 
 
 
-3.  Reference: 
+3.  
 
-::: {.rmdimportant}
+::: {.rmdtip}
+Reference: 
 https://shiny.rstudio.com/articles/layout-guide.html
 :::
 

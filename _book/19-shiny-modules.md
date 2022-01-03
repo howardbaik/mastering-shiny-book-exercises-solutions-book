@@ -20,6 +20,9 @@ histogramApp <- function() {
   }
   shinyApp(ui, server)  
 }
+
+# Run app
+histogramApp()
 ```
 
 
@@ -48,7 +51,7 @@ histogramUI <- function(id) {
 }
 ```
 
-3. The following module generates a new random number every time you click go
+3. 
 
 ```r
 randomUI <- function(id) {
@@ -136,6 +139,7 @@ randomApp <- function() {
   shinyApp(ui, server)  
 }
 
+# run app
 randomApp()
 ```
 
@@ -143,7 +147,11 @@ randomApp()
 
 ## 19.3.7 Exercises {-}
 
+
+::: {.rmdwarning}
 1. Not sure.
+:::
+
 
 2. 
 
@@ -270,8 +278,6 @@ ymdDateServer <- function(id) {
   })
 }
 
-
-
 # Generate app---
 ymdDateApp <- function() {
   ui <- fluidPage(
@@ -284,7 +290,7 @@ ymdDateApp <- function() {
   shinyApp(ui, server)
 } 
 
-
+# Run app---
 ymdDateApp()
 ```
 

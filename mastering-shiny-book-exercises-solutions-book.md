@@ -1,7 +1,7 @@
 --- 
 title: "Mastering Shiny Solutions"
 author: "Howard Baek"
-date: "2022-01-01"
+date: "2022-01-02"
 site: bookdown::bookdown_site
 documentclass: book
 url: https://mastering-shiny-solutions.netlify.app/
@@ -31,7 +31,7 @@ If my work has helped you, [you can buy me a coffee on Ko-fi!](https://ko-fi.com
 
 ## Acknowledgments {-}
 
-The author is grateful for Hadley Wickham writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), made getting this book online smooth and easy.
+The author is grateful to Hadley Wickham for writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), helped in deploying this book.
 
 <!--chapter:end:index.Rmd-->
 
@@ -310,7 +310,7 @@ shinyApp(ui, server)
 1.
 
 ::: {.rmdnote}
-Server 1
+__Server 1__
 
 - `input$greeting` --> `output$greeting`
 - Inside `renderText`, `name` --> `input$name` 
@@ -326,7 +326,7 @@ server1 <- function(input, output, server) {
 
 
 ::: {.rmdnote}
-Server 2
+__Server 2__
 
 - Make `greeting` a reactive: `greeting <- reactive(paste0("Hello ", input$name))`
 - Since `greeting` is now a reactive, add parenthesis around it: `output$greeting <- renderText(greeting())`
@@ -343,7 +343,7 @@ server2 <- function(input, output, server) {
 
 
 ::: {.rmdnote}
-Server 3 
+__Server 3__
 
 - Spelling error: `output$greting` --> `output$greeting`
 - Missing `renderText()`
@@ -358,8 +358,9 @@ server3 <- function(input, output, server) {
 :::
 
 
-
+::: {.rmdimportant}
 2. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/basic-reactivity.html#solution-15)
+:::
 
 
 3. When you use `range()` or `var()`, other readers won't know if you are using a reactive or the built-in R function.
@@ -376,7 +377,11 @@ Not sure why code fails, but maybe reading the chapter on [Tidy evaluation](http
 
 ## 4.8 Exercises {-}
 
+
+::: {.rmdimportant}
 1. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/case-study-er-injuries.html#exercise-5.8.1) 
+:::
+
 
 2. 
 
@@ -503,7 +508,9 @@ shinyApp(ui, server)
 ```
 
 
+::: {.rmdimportant}
 4. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/case-study-er-injuries.html#exercise-5.8.4)
+:::
 
 <!--chapter:end:04-case-study.Rmd-->
 
@@ -577,9 +584,10 @@ shinyApp(ui, server)
 
 
 
-3.  Reference: 
+3.  
 
-::: {.rmdimportant}
+::: {.rmdtip}
+Reference: 
 https://shiny.rstudio.com/articles/layout-guide.html
 :::
 
@@ -807,7 +815,10 @@ shinyApp(ui, server)
 ```
 
 
-5. Not sure
+::: {.rmdwarning}
+5. 
+Not sure, but I think that as is, `janitor::make_clean_names()` will not be re-run when `input$empty` changes since they are in different if statements.
+:::
 
 <!--chapter:end:09-uploads-downloads.Rmd-->
 
@@ -829,7 +840,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  # MSS 2021
+  # From Mastering Shiny Solutions 2021
   observeEvent(input$year, {
     req(input$year)
     date_range <- range(as.Date(paste0(input$year, "-01-01")),
@@ -852,7 +863,6 @@ library(shiny)
 library(tidyverse)
 library(openintro, warn.conflicts = FALSE)
 
-# MSS 2021
 states <- unique(county$state)
 
 ui <- fluidPage(
@@ -1018,11 +1028,11 @@ s <- shinyServer(function(input, output,session) {
 shinyApp(u,s)
 ```
 
-Circular reference seems to be the issue. Once you run this app, the numeric inputs continue to update autonomously.
+- Circular reference is the issue. Once you run this app, the numeric inputs continue to update autonomously.
 
 
 
-## 10.1.6 Exercises {-}
+## 10.2.3 Exercises {-}
 
 2. 
 
@@ -1086,7 +1096,10 @@ shinyApp(ui, server)
 ```
 
 
+
+::: {.rmdwarning}
 3. Not sure about this question, but I thought of using `checkboxInput()`
+:::
 
 
 
@@ -1157,7 +1170,16 @@ This app has an action button titled "Enter password". Once we click on the butt
 
 3. You lose the currently selected value. It ensures that we don’t create a reactive dependency that would cause this code to re-run every time `input$dynamic` changes (which will happen whenever the user modifies the value). We only want it to change when `input$type` or `input$label` changes.
 
+
+::: {.rmdimportant}
 4. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/dynamic-ui.html#exercise-10.3.4.3)
+:::
+
+
+
+::: {.rmdwarning}
+5. Not sure about this question because I don't know the S3 OOP system.
+:::
 
 <!--chapter:end:10-dynamic-ui.Rmd-->
 
@@ -1168,13 +1190,6 @@ This app has an action button titled "Enter password". Once we click on the butt
 ## 11.3 Exercises {-}
 
 1.
-
-```r
-library(ambient)
-simplex <- noise_simplex(c(500, 500), pertubation = 'normal', 
-                         pertubation_amplitude = 40)
-plot(as.raster(normalise(simplex)))
-```
 
 
 ```r
@@ -1240,7 +1255,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server, enableBookmarking = "server")
 ```
 
-`readRDS("shiny_bookmarks/cf6669ac8bfa4888/input.rds")` gives me a list with one dataframe, upload, with the name, size, type, and datapath of the uploaded datasets. Also, the uploaded datasets are saved inside shiny_bookmarks as `0.csv` and `1.csv`.
+- `readRDS("shiny_bookmarks/cf6669ac8bfa4888/input.rds")` gives me a list with one dataframe, upload, with the name, size, type, and datapath of the uploaded datasets. Also, the uploaded datasets are saved inside shiny_bookmarks as `0.csv` and `1.csv`.
 
 
 
@@ -1270,7 +1285,9 @@ There are no exercises in this chapter.
 - Reactives are not run because there are no outputs. Server function only contains inputs and reactive expressions.
 
 
+::: {.rmdwarning}
 2. Not sure
+:::
 
 3. When we start the session, `y` would not exist and thus `y()` would return an error since `y` is a reactive expression that consists of itself.
 
@@ -1304,11 +1321,19 @@ l2$a(10)
 l2$b(20)
 ```
 
-2. Not sure.
 
+::: {.rmdwarning}
+2. Not sure.
+:::
 
 
 ## 15.2.3 Exercises {-}
+
+
+::: {.rmdwarning}
+1. Not sure.
+:::
+
 
 
 2.
@@ -1338,11 +1363,19 @@ shinyApp(ui, server)
 ```
 
 - If I use `req()` and remove the `stop()`, I get an error message: `Error: non-numeric argument to binary operator`.
-- Not sure about what happens when I use `cancelOutput` argument, but the documentation states: "When req(..., cancelOutput = TRUE) is used, the "silent" exception is also raised, but it is treated slightly differently if one or more outputs are currently being evaluated. In those cases, the reactive chain does not proceed or update, but the output(s) are left is whatever state they happen to be in (whatever was their last valid state)."
+- Not sure about what happens when I use `cancelOutput` argument, but the documentation states: 
+
+
+::: {.rmdnote}
+When `req(..., cancelOutput = TRUE)` is used, the "silent" exception is also raised, but it is treated slightly differently if one or more outputs are currently being evaluated. In those cases, the reactive chain does not proceed or update, but the output(s) are left is whatever state they happen to be in (whatever was their last valid state).
+:::
+
+
 
 
 ## 15.4.3 Exercises {-}
 
+1.
 
 ```r
 library(shiny)
@@ -1366,36 +1399,11 @@ shinyApp(ui, server)
 
 ## 15.5.4 Exercises {-}
 
-1. There is no output?
+::: {.rmdwarning}
+1. Not sure.
 
-
-
-```r
-library(shiny)
-
-ui <- fluidPage(
-  textInput("name", "name"),
-  actionButton("add", "add"),
-  actionButton("del", "delete"),
-  textOutput("names")
-)
-server <- function(input, output, session) {
-  r <- reactiveValues(names = character())
-  observeEvent(input$add, {
-    r$names <- union(r$names, input$name)
-    updateTextInput(session, "name", value = "")
-  })
-  observeEvent(input$del, {
-    r$names <- setdiff(r$names, input$name)
-    updateTextInput(session, "name", value = "")
-  })
-  
-  output$names <- renderText(r$names)
-}
-
-shinyApp(ui, server)
-```
-
+2. Not sure.
+:::
 
 <!--chapter:end:15-reactive-blocks.Rmd-->
 
@@ -1468,8 +1476,7 @@ shinyApp(ui, server)
 ```
 
 
-3. You can do that for the second UI but not the first because the second UI has the "go" actionButton.
-
+3. 
 
 ```r
 library(shiny)
@@ -1497,6 +1504,9 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
+
+
+- You can do that for the second UI but not the first because the second UI has the `go` actionButton.
 
 
 <!--chapter:end:16-escaping-graph.Rmd-->
@@ -1537,6 +1547,9 @@ histogramApp <- function() {
   }
   shinyApp(ui, server)  
 }
+
+# Run app
+histogramApp()
 ```
 
 
@@ -1565,7 +1578,7 @@ histogramUI <- function(id) {
 }
 ```
 
-3. The following module generates a new random number every time you click go
+3. 
 
 ```r
 randomUI <- function(id) {
@@ -1653,6 +1666,7 @@ randomApp <- function() {
   shinyApp(ui, server)  
 }
 
+# run app
 randomApp()
 ```
 
@@ -1660,7 +1674,11 @@ randomApp()
 
 ## 19.3.7 Exercises {-}
 
+
+::: {.rmdwarning}
 1. Not sure.
+:::
+
 
 2. 
 
@@ -1787,8 +1805,6 @@ ymdDateServer <- function(id) {
   })
 }
 
-
-
 # Generate app---
 ymdDateApp <- function() {
   ui <- fluidPage(
@@ -1801,7 +1817,7 @@ ymdDateApp <- function() {
   shinyApp(ui, server)
 } 
 
-
+# Run app---
 ymdDateApp()
 ```
 

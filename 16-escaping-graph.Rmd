@@ -67,8 +67,7 @@ shinyApp(ui, server)
 ```
 
 
-3. You can do that for the second UI but not the first because the second UI has the "go" actionButton.
-
+3. 
 ```{r}
 library(shiny)
 
@@ -95,4 +94,7 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
+
+
+- You can do that for the second UI but not the first because the second UI has the `go` actionButton.
 

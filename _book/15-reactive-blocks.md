@@ -26,11 +26,19 @@ l2$a(10)
 l2$b(20)
 ```
 
-2. Not sure.
 
+::: {.rmdwarning}
+2. Not sure.
+:::
 
 
 ## 15.2.3 Exercises {-}
+
+
+::: {.rmdwarning}
+1. Not sure.
+:::
+
 
 
 2.
@@ -60,11 +68,19 @@ shinyApp(ui, server)
 ```
 
 - If I use `req()` and remove the `stop()`, I get an error message: `Error: non-numeric argument to binary operator`.
-- Not sure about what happens when I use `cancelOutput` argument, but the documentation states: "When req(..., cancelOutput = TRUE) is used, the "silent" exception is also raised, but it is treated slightly differently if one or more outputs are currently being evaluated. In those cases, the reactive chain does not proceed or update, but the output(s) are left is whatever state they happen to be in (whatever was their last valid state)."
+- Not sure about what happens when I use `cancelOutput` argument, but the documentation states: 
+
+
+::: {.rmdnote}
+When `req(..., cancelOutput = TRUE)` is used, the "silent" exception is also raised, but it is treated slightly differently if one or more outputs are currently being evaluated. In those cases, the reactive chain does not proceed or update, but the output(s) are left is whatever state they happen to be in (whatever was their last valid state).
+:::
+
+
 
 
 ## 15.4.3 Exercises {-}
 
+1.
 
 ```r
 library(shiny)
@@ -88,33 +104,8 @@ shinyApp(ui, server)
 
 ## 15.5.4 Exercises {-}
 
-1. There is no output?
+::: {.rmdwarning}
+1. Not sure.
 
-
-
-```r
-library(shiny)
-
-ui <- fluidPage(
-  textInput("name", "name"),
-  actionButton("add", "add"),
-  actionButton("del", "delete"),
-  textOutput("names")
-)
-server <- function(input, output, session) {
-  r <- reactiveValues(names = character())
-  observeEvent(input$add, {
-    r$names <- union(r$names, input$name)
-    updateTextInput(session, "name", value = "")
-  })
-  observeEvent(input$del, {
-    r$names <- setdiff(r$names, input$name)
-    updateTextInput(session, "name", value = "")
-  })
-  
-  output$names <- renderText(r$names)
-}
-
-shinyApp(ui, server)
-```
-
+2. Not sure.
+:::
