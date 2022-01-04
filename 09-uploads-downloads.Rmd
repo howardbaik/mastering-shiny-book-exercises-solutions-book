@@ -4,10 +4,10 @@
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
+## 9.4 Exercises {.unnumbered}
 
-## 9.4 Exercises {-}
+2.  
 
-2. 
 ```{r}
 library(shiny)
 # Increase max limit of size of uploaded file
@@ -44,8 +44,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-
-3. 
+3.  
 
 ```{r}
 library(shiny)
@@ -101,9 +100,8 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
+4.  From [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/uploads-and-downloads.html#exercise-9.4.4):
 
-
-4. From [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/uploads-and-downloads.html#exercise-9.4.4):
 ```{r}
 library(shiny)
 library(brickr)
@@ -150,9 +148,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-
-
-5. From 9.3 Case study, the main changes is from the Clean step of server function, where one large reactive is broken down into three multiple smaller ones. 
+5.  From 9.3 Case study, the main changes is from the Clean step of server function, where one large reactive is broken down into three multiple smaller ones.
 
 ```{r}
 library(shiny)
@@ -172,8 +168,7 @@ ui_upload <- sidebarLayout(
   )
 )
 
-# Cleaning the file.
-
+# Cleaning the file
 ui_clean <- sidebarLayout(
   sidebarPanel(
     checkboxInput("snake", "Rename columns to snake case?"),
@@ -200,7 +195,6 @@ ui <- fluidPage(
   ui_download
 )
 
-
 server <- function(input, output, session) {
   # Upload ---------------------------------------------------------
   raw <- reactive({
@@ -218,7 +212,6 @@ server <- function(input, output, session) {
     if (input$snake) {
       names(out) <- janitor::make_clean_names(names(out))
     }
-    
     out
   })
   
@@ -228,7 +221,6 @@ server <- function(input, output, session) {
     if (input$empty) {
       out <- janitor::remove_empty(out, "cols")
     }
-    
     out
   })
     
@@ -238,7 +230,6 @@ server <- function(input, output, session) {
     if (input$constant) {
       out <- janitor::remove_constant(out)
     }
-    
     out
   })
   
@@ -257,4 +248,3 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
-
