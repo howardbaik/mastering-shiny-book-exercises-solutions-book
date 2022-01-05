@@ -4,13 +4,7 @@
 
 ## 6.2.4 Exercises {-}
 
-1. `sidebarLayout()` documentation: 
-
-::: {.rmdnote}
-By default, the sidebar takes up 1/3 of the width, and the main panel 2/3. 
-:::
-
-In other words, given the width is 12 columns, the sidebar is made up of 4 columns and the main panel 8 columns. 
+1. Documentation on `sidebarLayout()`: "By default, the sidebar takes up 1/3 of the width, and the main panel 2/3". In other words, given the width is 12 columns, the sidebar is made up of 4 columns and the main panel 8 columns. 
 
 
 ```r
@@ -60,13 +54,7 @@ shinyApp(ui, server)
 
 
 
-3.  
-
-::: {.rmdtip}
-Reference: 
-https://shiny.rstudio.com/articles/layout-guide.html
-:::
-
+3.  Reference: https://shiny.rstudio.com/articles/layout-guide.html
 
 ```r
 # UI ONLY

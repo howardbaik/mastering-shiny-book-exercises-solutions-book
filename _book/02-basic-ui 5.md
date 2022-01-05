@@ -1,0 +1,117 @@
+# Basic UI
+
+
+
+## 2.2.8 Exercises {-}
+
+1. Provide `value` parameter: `textInput("name", value = "Your name")`
+
+2. 
+
+```r
+?shiny::sliderInput()
+```
+
+
+3. 
+
+```r
+library(shiny)
+
+ui <- fluidPage(
+    sliderInput(inputId = "user_input",
+                label = "User Input", 
+                value = 10,
+                min = 0, max = 100,
+                step = 5,
+                # Added animation
+                animate = animationOptions(
+                    interval = 1000,
+                    loop = TRUE,
+                    playButton = NULL,
+                    pauseButton = NULL
+                )
+    )
+    
+)
+
+server <- function(input, output, session) {}
+
+shinyApp(ui, server)
+```
+
+
+4. `selectInput()` documentation:
+
+::: {.rmdnote}
+It's also possible to group related inputs by providing a named list whose elements are (either named or unnamed) lists, vectors, or factors. In this case, the outermost names will be used as the group labels (leveraging the  `<optgroup>` HTML tag) for the elements in the respective sublist. See the example section for a small demo of this feature.
+:::
+
+
+## 2.3.5 Exercises {-}
+
+1. 
+
+a) `renderPrint(summary(mtcars))` should be paired with `verbatimTextOutput` since it is console output.
+b) `renderText("Good morning!")` should be paired with `textOutput` since it is regular text.
+c) `renderPrint(t.test(1:5, 2:6))` should be paired with `verbatimTextOutput` since it is console output.
+d) `renderText(str(lm(mpg ~ wt, data = mtcars)))` should be paired with `verbatimTextOutput` since it is console output.
+
+2. 
+
+```r
+library(shiny)
+
+ui <- fluidPage(
+    plotOutput("plot", width = "700px", height = "300px")
+)
+
+server <- function(input, output, session) {
+    output$plot <- renderPlot(plot(1:5), res = 96, 
+                              alt = "Scatterplot of 5 random numbers")
+}
+
+shinyApp(ui, server)
+```
+
+
+
+3.
+
+```r
+library(shiny)
+
+ui <- fluidPage(
+    dataTableOutput("table")
+)
+
+server <- function(input, output, session) {
+    output$table <- renderDataTable(mtcars, 
+                                    options = list(pageLength = 5,
+                                                   ordering = FALSE, 
+                                                   searching = FALSE))
+}
+
+shinyApp(ui, server)
+```
+
+
+4.
+
+```r
+library(shiny)
+library(reactable)
+
+ui <- fluidPage(
+  reactableOutput("table")
+)
+
+server <- function(input, output) {
+  output$table <- renderReactable({
+    reactable(mtcars)
+  })
+}
+
+shinyApp(ui, server)
+
+```

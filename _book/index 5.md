@@ -1,0 +1,34 @@
+--- 
+title: "Mastering Shiny Solutions"
+author: "Howard Baek"
+date: "2022-01-02"
+site: bookdown::bookdown_site
+documentclass: book
+url: https://mastering-shiny-solutions.netlify.app/
+cover-image: "img/mastering-shiny-cover.png"
+bibliography:
+- book.bib
+- packages.bib
+description: |
+  Solutions manual to the exercises in Hadley Wickham's Mastering Shiny.
+biblio-style: apalike
+csl: chicago-fullnote-bibliography.csl
+---
+
+# Welcome {-}
+
+<img src="img/mastering-shiny-cover.png" class="cover" width="250" height="328"/>This is the website for Mastering Shiny Solutions, a solutions manual for the exercises in [Mastering Shiny](https://mastering-shiny.org/), written by Hadley Wickham. 
+
+[Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/), by Maya Gans and Marly Gotti, was released in early 2021. Since then, there have been various changes to the exercises in Mastering Shiny, and this book serves as an _updated version_. A few solutions in this book defer to those provided in Mastering Shiny Solutions 2021. Also, some exercises don't contain solutions, and for these exercises, the author writes, "Not sure".
+
+If my work has helped you, [you can buy me a coffee on Ko-fi!](https://ko-fi.com/howardbaek)
+
+
+## About the Author {-}
+
+[_Howard Baek_](http://insidethetv.rbind.io/) is a Master’s student in Biostatistics at the University of Washington. His past experiences include a [NIH-funded Research Assistantship](https://github.com/howardbaek/addiction-dashboard-simple) at the Behavioral Research In Technology and Engineering (BRiTE) Center, where he developed a __Shiny Dashboard__ that allows patients and clinicians in addiction treatment to monitor patients’ progress and goals over time and an [Educational Data Mining Research Internship](https://github.com/howardbaek/mooc-project-github) at George Mason University, where he analyzed real world datasets from a Stanford online course and created a __Shiny Dashboard__ for instructors to interact with the dataset.
+
+
+## Acknowledgments {-}
+
+The author is grateful to Hadley Wickham for writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), helped in deploying this book.

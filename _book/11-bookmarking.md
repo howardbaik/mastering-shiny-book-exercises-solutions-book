@@ -6,6 +6,13 @@
 
 1.
 
+```r
+library(ambient)
+simplex <- noise_simplex(c(500, 500), pertubation = 'normal', 
+                         pertubation_amplitude = 40)
+plot(as.raster(normalise(simplex)))
+```
+
 
 ```r
 library(shiny)
@@ -70,6 +77,6 @@ server <- function(input, output, session) {
 shinyApp(ui, server, enableBookmarking = "server")
 ```
 
-- `readRDS("shiny_bookmarks/cf6669ac8bfa4888/input.rds")` gives me a list with one dataframe, upload, with the name, size, type, and datapath of the uploaded datasets. Also, the uploaded datasets are saved inside shiny_bookmarks as `0.csv` and `1.csv`.
+`readRDS("shiny_bookmarks/cf6669ac8bfa4888/input.rds")` gives me a list with one dataframe, upload, with the name, size, type, and datapath of the uploaded datasets. Also, the uploaded datasets are saved inside shiny_bookmarks as `0.csv` and `1.csv`.
 
 

@@ -8,8 +8,6 @@
 - Reactives are not run because there are no outputs. Server function only contains inputs and reactive expressions.
 
 
-::: {.rmdwarning}
 2. Not sure
-:::
 
 3. When we start the session, `y` would not exist and thus `y()` would return an error since `y` is a reactive expression that consists of itself.
