@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
-## 9.4 Exercises {.unnumbered}
+## 9.4 Exercises {-}
 
 2.  
 
@@ -148,7 +148,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-5.  From 9.3 Case study, the main changes is from the Clean step of server function, where one large reactive is broken down into three multiple smaller ones.
+5.  From the 9.3 Case study, the main change happens in the cleaning step inside the server function, where one large reactive is broken down into three smaller ones.
 
 ```{r}
 library(shiny)
