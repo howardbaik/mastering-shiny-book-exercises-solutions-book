@@ -31,4 +31,7 @@ If my work has helped you, [you can buy me a coffee on Ko-fi!](https://ko-fi.com
 
 ## Acknowledgments {-}
 
-The author is grateful to Hadley Wickham for writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), helped in deploying this book.
+The author is grateful to Hadley Wickham for writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), helped in deploying this book. 
+
+Thank you to everyone who contributed solutions by creating a Pull Request on GitHub: `@kcha193`
+

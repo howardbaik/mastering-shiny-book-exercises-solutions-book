@@ -6,14 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 3 Basic reactivity | Mastering Shiny Solutions</title>
 <meta name="author" content="Howard Baek">
-<meta name="description" content='3.3.6 Exercises  server1 &lt;- function(input, output, server) {  input$greeting &lt;- renderText(paste0("Hello ", name)) } input$greeting –&gt; output$greeting Inside renderText, name –&gt; input$name Fixed...'>
+<meta name="description" content="3.3.6 Exercises  Server 1 input$greeting –&gt; output$greeting Inside renderText, name –&gt; input$name Fixed code: server1 &lt;- function(input, output, server) {  output$greeting &lt;-...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 3 Basic reactivity | Mastering Shiny Solutions">
 <meta property="og:type" content="book">
-<meta property="og:description" content='3.3.6 Exercises  server1 &lt;- function(input, output, server) {  input$greeting &lt;- renderText(paste0("Hello ", name)) } input$greeting –&gt; output$greeting Inside renderText, name –&gt; input$name Fixed...'>
+<meta property="og:url" content="https://mastering-shiny-solutions.netlify.app/basic-reactivity.html">
+<meta property="og:image" content="https://mastering-shiny-solutions.netlify.app/img/mastering-shiny-cover.png">
+<meta property="og:description" content="3.3.6 Exercises  Server 1 input$greeting –&gt; output$greeting Inside renderText, name –&gt; input$name Fixed code: server1 &lt;- function(input, output, server) {  output$greeting &lt;-...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 3 Basic reactivity | Mastering Shiny Solutions">
-<meta name="twitter:description" content='3.3.6 Exercises  server1 &lt;- function(input, output, server) {  input$greeting &lt;- renderText(paste0("Hello ", name)) } input$greeting –&gt; output$greeting Inside renderText, name –&gt; input$name Fixed...'>
+<meta name="twitter:description" content="3.3.6 Exercises  Server 1 input$greeting –&gt; output$greeting Inside renderText, name –&gt; input$name Fixed code: server1 &lt;- function(input, output, server) {  output$greeting &lt;-...">
+<meta name="twitter:image" content="https://mastering-shiny-solutions.netlify.app/img/mastering-shiny-cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -84,51 +87,63 @@
 <ol style="list-style-type: decimal">
 <li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">server1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">server</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">input</span><span class="op">$</span><span class="va">greeting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Hello "</span>, <span class="va">name</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<div class="rmdnote">
+<p><strong>Server 1</strong></p>
 <ul>
 <li>
 <code>input$greeting</code> –&gt; <code>output$greeting</code>
 </li>
 <li>Inside <code>renderText</code>, <code>name</code> –&gt; <code>input$name</code>
 </li>
-<li>Fixed code: <code>output$greeting &lt;- renderText(paste0("Hello ", input$name))</code>
-</li>
+<li>Fixed code:</li>
 </ul>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">server2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">server</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">greeting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Hello "</span>, <span class="va">input</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">greeting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="va">greeting</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">server1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">server</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">greeting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Hello "</span>, <span class="va">input</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
+</div>
+<div class="rmdnote">
+<p><strong>Server 2</strong></p>
 <ul>
-<li>You can make <code>greeting</code> a reactive by adding <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html">reactive()</a></code>: <code>greeting &lt;- reactive(paste0("Hello ", input$name))</code>
+<li>Make <code>greeting</code> a reactive: <code>greeting &lt;- reactive(paste0("Hello ", input$name))</code>
 </li>
-<li>Since <code>greeting</code> is now a reactive, you need to add parenthesis around it: <code>output$greeting &lt;- renderText(greeting())</code>
+<li>Since <code>greeting</code> is now a reactive, add parenthesis around it: <code>output$greeting &lt;- renderText(greeting())</code>
 </li>
+<li>Fixed code:</li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">server3</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">server</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">greting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Hello"</span>, <span class="va">input</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">server2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">server</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">greeting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html">reactive</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Hello "</span>, <span class="va">input</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">greeting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="fu">greeting</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
+</div>
+<div class="rmdnote">
+<p><strong>Server 3</strong></p>
 <ul>
 <li>Spelling error: <code>output$greting</code> –&gt; <code>output$greeting</code>
 </li>
 <li>Missing <code><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText()</a></code>
 </li>
-<li>Fixed code: <code>output$greeting &lt;- renderText(paste0("Hello ", input$name))</code>
-</li>
+<li>Fixed code:</li>
 </ul>
-<p><br></p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">server3</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">server</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">greeting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Hello "</span>, <span class="va">input</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+</div>
+<div class="rmdimportant">
 <ol start="2" style="list-style-type: decimal">
 <li>Solution at <a href="https://mastering-shiny-solutions.org/basic-reactivity.html#solution-15">Mastering Shiny Solutions 2021</a>
 </li>
 </ol>
-<p><br></p>
+</div>
 <ol start="3" style="list-style-type: decimal">
-<li>Code will fail because of df[[input$var]]. When you use <code><a href="https://rdrr.io/r/base/range.html">range()</a></code> or <code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code>, other readers won’t know if you are using a reactive or the built-in R function.</li>
+<li>When you use <code><a href="https://rdrr.io/r/base/range.html">range()</a></code> or <code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code>, other readers won’t know if you are using a reactive or the built-in R function.</li>
 </ol>
+<div class="rmdwarning">
+<p>Not sure why code fails, but maybe reading the chapter on <a href="https://mastering-shiny.org/action-tidy.html#action-tidy">Tidy evaluation</a> will help.</p>
+</div>
+
 </div>
 </div>
   <div class="chapter-nav">
@@ -156,7 +171,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2021-12-26.</p>
+    <p>"<strong>Mastering Shiny Solutions</strong>" was written by Howard Baek. It was last built on 2022-01-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,7 +1,7 @@
 --- 
 title: "Mastering Shiny Solutions"
 author: "Howard Baek"
-date: "2022-01-02"
+date: "2022-01-04"
 site: bookdown::bookdown_site
 documentclass: book
 url: https://mastering-shiny-solutions.netlify.app/
@@ -31,7 +31,10 @@ If my work has helped you, [you can buy me a coffee on Ko-fi!](https://ko-fi.com
 
 ## Acknowledgments {-}
 
-The author is grateful to Hadley Wickham for writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), helped in deploying this book.
+The author is grateful to Hadley Wickham for writing Mastering Shiny and making it available online. Alison Hill and Desirée De Leon’s talk, [Sharing on Short Notice](https://youtu.be/QcE4RBH2auQ?t=1881), helped in deploying this book. 
+
+Thank you to everyone who contributed solutions by creating a Pull Request on GitHub: `@kcha193`
+
 
 <!--chapter:end:index.Rmd-->
 
@@ -665,10 +668,10 @@ There are no exercises in this chapter.
 
 
 
-
 ## 9.4 Exercises {-}
 
-2. 
+2.  
+
 
 ```r
 library(shiny)
@@ -706,8 +709,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-
-3. 
+3.  
 
 
 ```r
@@ -764,9 +766,8 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
+4.  From [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/uploads-and-downloads.html#exercise-9.4.4):
 
-
-4. From [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/uploads-and-downloads.html#exercise-9.4.4):
 
 ```r
 library(shiny)
@@ -814,11 +815,107 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
+5.  From the 9.3 Case study, the main change happens in the cleaning step inside the server function, where one large reactive is broken down into three smaller ones.
 
-::: {.rmdwarning}
-5. 
-Not sure, but I think that as is, `janitor::make_clean_names()` will not be re-run when `input$empty` changes since they are in different if statements.
-:::
+
+```r
+library(shiny)
+
+# Uploading and parsing the file
+
+ui_upload <- sidebarLayout(
+  sidebarPanel(
+    fileInput("file", "Data", buttonLabel = "Upload..."),
+    textInput("delim", "Delimiter (leave blank to guess)", ""),
+    numericInput("skip", "Rows to skip", 0, min = 0),
+    numericInput("rows", "Rows to preview", 10, min = 1)
+  ),
+  mainPanel(
+    h3("Raw data"),
+    tableOutput("preview1")
+  )
+)
+
+# Cleaning the file
+ui_clean <- sidebarLayout(
+  sidebarPanel(
+    checkboxInput("snake", "Rename columns to snake case?"),
+    checkboxInput("constant", "Remove constant columns?"),
+    checkboxInput("empty", "Remove empty cols?")
+  ),
+  mainPanel(
+    h3("Cleaner data"),
+    tableOutput("preview2")
+  )
+)
+
+# Downloading the file.
+
+ui_download <- fluidRow(
+  column(width = 12, downloadButton("download", class = "btn-block"))
+)
+
+# which get assembled into a single fluidPage():
+
+ui <- fluidPage(
+  ui_upload,
+  ui_clean,
+  ui_download
+)
+
+server <- function(input, output, session) {
+  # Upload ---------------------------------------------------------
+  raw <- reactive({
+    req(input$file)
+    delim <- if (input$delim == "") NULL else input$delim
+    vroom::vroom(input$file$datapath, delim = delim, skip = input$skip)
+  })
+  output$preview1 <- renderTable(head(raw(), input$rows))
+  
+  # Clean step ---------------------------------------------------------
+  # Breaking one large reactive up into multiple pieces
+  cleaned_names <- reactive({
+    out <- raw()
+    
+    if (input$snake) {
+      names(out) <- janitor::make_clean_names(names(out))
+    }
+    out
+  })
+  
+  removed_empty <- reactive({
+    out <- cleaned_names()
+  
+    if (input$empty) {
+      out <- janitor::remove_empty(out, "cols")
+    }
+    out
+  })
+    
+  removed_constant <- reactive({
+    out <- removed_empty()
+   
+    if (input$constant) {
+      out <- janitor::remove_constant(out)
+    }
+    out
+  })
+  
+  output$preview2 <- renderTable(head(removed_constant(), input$rows))
+  
+  # Download -------------------------------------------------------
+  output$download <- downloadHandler(
+    filename = function() {
+      paste0(tools::file_path_sans_ext(input$file$name), ".tsv")
+    },
+    content = function(file) {
+      vroom::vroom_write(removed_constant(), file)
+    }
+  )
+}
+
+shinyApp(ui, server)
+```
 
 <!--chapter:end:09-uploads-downloads.Rmd-->
 

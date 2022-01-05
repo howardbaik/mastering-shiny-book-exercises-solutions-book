@@ -16,7 +16,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  # MSS 2021
+  # From Mastering Shiny Solutions 2021
   observeEvent(input$year, {
     req(input$year)
     date_range <- range(as.Date(paste0(input$year, "-01-01")),
@@ -39,7 +39,6 @@ library(shiny)
 library(tidyverse)
 library(openintro, warn.conflicts = FALSE)
 
-# MSS 2021
 states <- unique(county$state)
 
 ui <- fluidPage(
@@ -205,11 +204,11 @@ s <- shinyServer(function(input, output,session) {
 shinyApp(u,s)
 ```
 
-Circular reference seems to be the issue. Once you run this app, the numeric inputs continue to update autonomously.
+- Circular reference is the issue. Once you run this app, the numeric inputs continue to update autonomously.
 
 
 
-## 10.1.6 Exercises {-}
+## 10.2.3 Exercises {-}
 
 2. 
 
@@ -273,7 +272,10 @@ shinyApp(ui, server)
 ```
 
 
+
+::: {.rmdwarning}
 3. Not sure about this question, but I thought of using `checkboxInput()`
+:::
 
 
 
@@ -344,4 +346,13 @@ This app has an action button titled "Enter password". Once we click on the butt
 
 3. You lose the currently selected value. It ensures that we don’t create a reactive dependency that would cause this code to re-run every time `input$dynamic` changes (which will happen whenever the user modifies the value). We only want it to change when `input$type` or `input$label` changes.
 
+
+::: {.rmdimportant}
 4. Solution at [Mastering Shiny Solutions 2021](https://mastering-shiny-solutions.org/dynamic-ui.html#exercise-10.3.4.3)
+:::
+
+
+
+::: {.rmdwarning}
+5. Not sure about this question because I don't know the S3 OOP system.
+:::
