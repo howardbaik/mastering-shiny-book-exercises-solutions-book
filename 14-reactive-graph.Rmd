@@ -13,7 +13,7 @@ knitr::include_graphics("img/reactive-graph.png")
 2.  The graph will take
 
 -   1 second to recompute if `x1` changes,
--   2 second to recompute if `x2` changes and
+-   2 seconds to recompute if `x2` changes and
 -   1 second to recompute if `x3` changes.
 
 Please find the reactive graph below which is generated using the [reactlog](https://rstudio.github.io/reactlog/) package. For further details, please refer to [The reactlog package](https://mastering-shiny.org/reactive-graph.html#the-reactlog-package) in  Mastering Shiny book.
